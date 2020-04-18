@@ -12,7 +12,7 @@ app.use(cors());
 let Question;
 (async _=> {
     try{
-        let url = 'mongodb+srv://new-user__31:123321@cluster0-ou0ly.mongodb.net/meh';
+        let url = process.env.MONGODB_URL || 'mongodb+srv://new-user__31:123321@cluster0-ou0ly.mongodb.net/meh';
         await mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
     }
     catch(e){
