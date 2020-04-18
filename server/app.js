@@ -6,8 +6,10 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('../build'));
 
 let Question;
 (async _=> {

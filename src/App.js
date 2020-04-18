@@ -6,7 +6,7 @@ import Question from './Question';
 require('dotenv').config();
 
 class App extends Component{
-    API_URL = process.env.REACT_APP_TEST;
+    API_URL = process.env.REACT_APP_API_URL;
   constructor(props){
     super(props);
     this.state= {
