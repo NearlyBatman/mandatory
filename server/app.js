@@ -70,4 +70,4 @@ app.get('*',(req, res)=>
     res.sendFile(path.resolve('..','client','build','index.html'))
 );
 
-app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
+app.listen(port, () => console.log(`API running on port ${port}!`));
