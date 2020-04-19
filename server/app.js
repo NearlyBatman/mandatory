@@ -1,15 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const appName = "Express API Template";
-const port = process.env.PORT || 8080;
-const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
+const port = process.env.PORT || 8080;
+const app = express();
 
-app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static('../build'));
+app.use(bodyParser.json());
+app.use(express.static('../client/build'));
 
 let Question;
 (async _=> {
@@ -50,7 +50,7 @@ app.post('/api/questions/:id/answers', async (req, res) => {
     let question = await Question.findById(id);
     question.answers.push({text: text, votes: 0});
     question.save();
-})
+});
 
 app.post('/api/questions/:id/votes', async (req, res) => {
     let id = req.params.id;
@@ -64,5 +64,10 @@ app.post('/api/questions/:id/votes', async (req, res) => {
         question.answers[id2].votes--;
     }
     question.save();
-})
+});
+
+app.get('*',(req, res)=>
+    res.sendFile(path.resolve('..','client','build','index.html'))
+);
+
 app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
